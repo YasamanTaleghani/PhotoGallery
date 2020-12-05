@@ -260,8 +260,6 @@ public class LocatrFragment extends SupportMapFragment {
         LatLngBounds latLngBounds = new LatLngBounds.Builder()
                 .include(myLatLng)
                 .include(mItemLatLngs.get(0))
-                .include(mItemLatLngs.get(1))
-                .include(mItemLatLngs.get(2))
                 .build();
 
         MarkerOptions myMarkerOptions = new MarkerOptions()
@@ -269,15 +267,24 @@ public class LocatrFragment extends SupportMapFragment {
                 .title("My Location");
         mMap.addMarker(myMarkerOptions);
 
-        List<MarkerOptions> markerOptions = new ArrayList<>();
-        for (int i = 0; i< 3 ; i++) {
-            markerOptions.set(i,new MarkerOptions()
-                    .position(mItemLatLngs.get(i))
-                    .icon(BitmapDescriptorFactory.fromBitmap(mItemBitmaps.get(i)))
-                    .title("Nearest Picture"));
+        MarkerOptions markerOptions1 = new MarkerOptions()
+                    .position(mItemLatLngs.get(0))
+                    .icon(BitmapDescriptorFactory.fromBitmap(mItemBitmaps.get(0)))
+                    .title("Nearest Picture1");
 
-            mMap.addMarker(markerOptions.get(i));
-        }
+        MarkerOptions markerOptions2 = new MarkerOptions()
+                .position(mItemLatLngs.get(1))
+                .icon(BitmapDescriptorFactory.fromBitmap(mItemBitmaps.get(1)))
+                .title("Nearest Picture2");
+
+        MarkerOptions markerOptions3 = new MarkerOptions()
+                .position(mItemLatLngs.get(1))
+                .icon(BitmapDescriptorFactory.fromBitmap(mItemBitmaps.get(2)))
+                .title("Nearest Picture3");
+
+        mMap.addMarker(markerOptions1);
+        mMap.addMarker(markerOptions2);
+        mMap.addMarker(markerOptions3);
 
         int margin = getResources().getDimensionPixelSize(R.dimen.map_inset_margin);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds, margin);
